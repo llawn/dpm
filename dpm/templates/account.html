@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accounts - DPM</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Accounts - DPM</h1>
+    </header>
+    <main>
+        <form method="POST" action="/api/v1/accounts">
+            {% if error %}
+            <p style="color: red;">{{ error }}</p>
+            {% endif %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <form method="POST" action="/api/v1/accounts">
+                        <td><button type="submit">Ajouter le nouveau utilisateur</button></td>
+                        <td><input type="text" id="username" name="username" required></td>
+                        <td><input type="email" id="email" name="email" required></td>
+                        <td><input type="password" id="password" name="password" required></td>
+                    </form>
+                </tr>
+                {% for row in data %}
+                <tr>
+                    <td>{{ row.user_id}}</td>
+                    <td>{{ row.username }}</td>
+                    <td>{{ row.email }}</td>
+                    <td>*********************</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <p>&copy; 2024 DPM</p>
+    </footer>
+</body>
+</html>
