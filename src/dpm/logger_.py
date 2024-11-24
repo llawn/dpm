@@ -16,13 +16,7 @@ def configure_logger(logger: logging.Logger, log_file="app.log", level=logging.D
     file_handler.setLevel(logging.DEBUG)  # Log everything to the file
     file_handler.setFormatter(formatter)
 
-    # Console handler for logging to stdout
-    console_handler = logging.StreamHandler()
-    console_handler.setLevel(logging.INFO)  # Only log INFO and above to the console
-
     # Add handlers to the logger
-    if not logger.handlers:  # Avoid duplicate handlers during imports
-        logger.addHandler(console_handler)
     logger.addHandler(file_handler)
 
     # Optional: Customize specific package's logging level
