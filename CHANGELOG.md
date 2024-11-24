@@ -1,3 +1,9 @@
+## 0.2.1 (2024-11-24)
+
+
+- ci(**setup**): add a setup batch file<br>
+- fix(**version**): fix version file<br>
+
 ## 0.2.0 (2024-11-24)
 
 

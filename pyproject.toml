@@ -11,7 +11,7 @@ maintainers = [{name = "Llawn", email = "llawn06@gmail.com"}]
 readme = "README.md"
 license = {file = "LICENSE"}
 
-version         = "0.2.0"
+version         = "0.2.1"
 requires-python = ">=3.12"
 dependencies    = [
 ]
@@ -27,6 +27,9 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
+test = [
+    "nose2 >= 0.15.1"
+]
 
 [tool.commitizen]
 version_provider = "pep621"
