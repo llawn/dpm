@@ -1,3 +1,13 @@
+## 0.4.0 (2024-11-24)
+
+
+- fix(**logging**): remove streamhandler for logger_.py<br>
+- test(**logging**): test loggers for dpm and test itself<br>
+- feat(**logging**): add a specific logger for test<br>
+- ci(**dependencies**): use uv in install.bat to setup our dependencies<br>
+- docs(**dependencies**): add nose2<br>
+- fix(**logging**): unique name for logger between file and __init__<br>
+
 ## 0.3.0 (2024-11-24)
 
 
