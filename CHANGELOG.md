@@ -1,3 +1,9 @@
+## 0.3.0 (2024-11-24)
+
+
+- feat(**logging**): add a logging welcome message for package dpm<br>
+- feat(**logging**): add a custom logger for dpm package<br>
+
 ## 0.2.1 (2024-11-24)
 
 
