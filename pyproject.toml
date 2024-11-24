@@ -1,0 +1,113 @@
+[build-system]
+requires      = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name        = "dpm"
+description = "dance player manager"
+authors     = [{name = "Llawn", email = "llawn06@gmail.com"}]
+maintainers = [{name = "Llawn", email = "llawn06@gmail.com"}]
+
+readme = "README.md"
+license = {file = "LICENSE"}
+
+version         = "0.1.0"
+requires-python = ">=3.12"
+dependencies    = [
+]
+
+keywords = [
+    "dance",
+    "player",
+    "manager"
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python"
+]
+
+[project.optional-dependencies]
+
+[tool.commitizen]
+version_provider = "pep621"
+tag_format = "$version"
+version_files = [
+    "VERSION",
+    "pyproject.toml:version"
+]
+update_changelog_on_bump = true
+name = "cz_customize"
+template = "templates/changelog_template.j2"
+
+[tool.commitizen.customize]
+message_template  = "{{prefix}}({{scope}}): {{subject}}\n\n{{body}}\n\n\n{{footer}}"
+schema            = "<prefix>(<scope>): <subject>\n\n<body>\n\n\n<footer>"
+schema_pattern    = "^(?P<prefix>(build|ci|chore|docs|feat|fix|perf|refactor|style|test))(?:\\((?P<scope>[a-zA-Z0-9-_]+)\\))?:\\s(?P<subject>.+)(?:\n\n(?P<body>.+))?(?:\n\n\n(?P<footer>.+))?" # noqa: E501
+commit_parser     = "^(?P<prefix>(build|ci|chore|docs|feat|fix|perf|refactor|style|test))(?:\\((?P<scope>[a-zA-Z0-9-_]+)\\))?:\\s(?P<subject>.+)(?:\n\n(?P<body>.+))?(?:\n\n\n(?P<footer>.+))?" # noqa: E501
+changelog_pattern = "^(?P<prefix>(build|ci|chore|docs|feat|fix|perf|refactor|style|test))(?:\\((?P<scope>[a-zA-Z0-9-_]+)\\))?:\\s(?P<subject>.+)(?:\n\n(?P<body>.+))?(?:\n\n\n(?P<footer>.+))?" # noqa: E501
+bump_map = { "BREAKING CHANGE" = "MAJOR", "feat" = "MINOR", "fix" = "PATCH", "refactor" = "PATCH", "perf" = "PATCH" } # noqa: E501
+bump_pattern = "^(?P<prefix>(BREAKING CHANGE|feat|fix|refactor|perf))"
+
+[[tool.commitizen.customize.questions]]
+type = "list"
+name = "prefix"
+choices = [
+    {value = "build",    key = 'b', name = "build:    Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)"}, # noqa: E501
+    {value = "ci",       key = 'c', name = "ci:       Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)"}, # noqa: E501
+    {value = "chore",    key = 'h', name = "chore:    Miscellaneous commits e.g. modifying .gitignore"}, # noqa: E501
+    {value = "docs",     key = 'd', name = "docs:     Documentation only changes"},
+    {value = "feat",     key = 'f', name = "feat:     A new feature"},
+    {value = "fix",      key = 'x', name = "fix:      A bug fix"},
+    {value = "perf",     key = 'p', name = "perf:     A code change that improves performance"},
+    {value = "refactor", key = 'r', name = "refactor: A code change that neither fixes a bug nor adds a feature"}, # noqa: E501
+    {value = "style",    key = 's', name = "style:    Changes that do not affect the meaning of the code"}, # noqa: E501
+    {value = "test",     key = 't', name = "test:     Adding or correcting tests"}
+]
+message = "Select the type of change you are committing"
+
+[[tool.commitizen.customize.questions]]
+type    = "input"
+name    = "scope"
+message = "What is the scope of this change? (class or file name): (press [enter] to skip)\n"
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "subject"
+message = "Write a short and imperative summary of the code changes: (lower case and no period)\n"
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "body"
+message = "Provide additional contextual information about the code changes: (press [enter] to skip)\n" # noqa: E501
+
+[[tool.commitizen.customize.questions]]
+type = "confirm"
+message = "Is this a BREAKING CHANGE? Correlates with MAJOR in SemVer"
+name = "is_breaking_change"
+default = false
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "footer"
+message = "Footer. Information about Breaking Changes and reference issues that this commit closes: (press [enter] to skip)\n" # noqa: E501
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "F",   # Pyflakes
+    "E",   # pycodestyle error
+    "W",   # pycodestyle warning
+    "I",   # isort
+    'N',   # pep8-naming
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "SIM", # flake8-simplify
+]
+exclude = ["W292"]
+
+[tool.ruff.format]
+indent-style = "space"
+skip-magic-trailing-comma = true
+line-ending = "auto"
