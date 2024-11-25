@@ -1,7 +1,8 @@
-from datetime import datetime
+from datetime import UTC, datetime
+from typing import Self
 
 from customtypes import UsernameStr
-from pydantic import AwareDatetime, BaseModel, EmailStr, PositiveInt, SecretStr
+from pydantic import BaseModel, EmailStr, PositiveInt, SecretStr
 
 
 class User(BaseModel):
@@ -9,26 +10,30 @@ class User(BaseModel):
     username: UsernameStr
     password: SecretStr
     email: EmailStr
-    created_at: AwareDatetime = datetime.now(tz=datetime.now().astimezone().tzinfo)
-    last_login: AwareDatetime | None = None
+    created_at: str = datetime.now(UTC).replace(tzinfo=None).isoformat()
+    last_login: str | None = None
+
+    @staticmethod
+    def get_iso(dt: datetime) -> str:
+        return dt.astimezone(UTC).replace(tzinfo=None).isoformat()
 
     @classmethod
-    def from_iso(
+    def from_datetime(
         cls,
         user_id: PositiveInt,
         username: UsernameStr,
         password: SecretStr,
         email: EmailStr,
-        created_at_iso: str,
-        last_login_iso: str | None = None,
-    ):
-        created_at = datetime.fromisoformat(created_at_iso)
-        last_login = datetime.fromisoformat(last_login_iso) if last_login_iso else None
+        created_at: datetime | None = None,
+        last_login: datetime | None = None,
+    ) -> Self:
+        created_at_iso = cls.get_iso(created_at) if created_at else None
+        last_login_iso = cls.get_iso(created_at) if last_login else None
         return cls(
             user_id=user_id,
             username=username,
             password=password,
             email=email,
-            created_at=created_at,
-            last_login=last_login,
+            created_at=created_at_iso,
+            last_login=last_login_iso,
         )
