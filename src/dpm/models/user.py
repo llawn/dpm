@@ -44,7 +44,9 @@ class User(BaseModel):
         :return: ISO format of dt
         :rtype: str
         """
-        return dt.astimezone(UTC).replace(tzinfo=None).isoformat()
+        if dt.tzinfo:
+            dt = dt.astimezone(UTC).replace(tzinfo=None)
+        return dt.isoformat()
 
     @classmethod
     def from_datetime(
