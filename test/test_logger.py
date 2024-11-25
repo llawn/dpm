@@ -1,7 +1,8 @@
 import unittest
 
 from src.dpm import logger as dpmlogger
-from test import logger as testlogger
+
+from . import logger as testlogger
 
 
 class TestLoggers(unittest.TestCase):

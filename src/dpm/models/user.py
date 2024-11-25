@@ -1,8 +1,9 @@
 from datetime import UTC, datetime
 from typing import Self
 
-from customtypes import UsernameStr
 from pydantic import BaseModel, EmailStr, PositiveInt, SecretStr
+
+from .customtypes import UsernameStr
 
 
 class User(BaseModel):
