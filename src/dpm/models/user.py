@@ -44,6 +44,7 @@ class User(BaseModel):
         :return: ISO format of dt
         :rtype: str
         """
+        # TODO: place it in mixin method
         if dt.tzinfo:
             dt = dt.astimezone(UTC).replace(tzinfo=None)
         return dt.isoformat()
