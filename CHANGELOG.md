@@ -1,3 +1,19 @@
+## 0.5.0 (2024-11-26)
+
+
+- style(**todo**): add a todo to change the get_iso method to place it in its own mixin<br>
+- chore(**gitignore**): add vscode dotfolder to gitignore<br>
+- style(**readme**): add badges inside readme<br>
+- build(**dependencies**): add pytz to my dependencies<br>
+- test(**models**): add unittest to validate my user model<br>
+- fix(**models**): wrong conversion to isoformat when tzinfo is not none<br>
+- build(**dependencies**): add pydantic and email validator dependencies<br>
+- fix(**import**): correct import<br>
+- docs(**types**): add documentation for customtypes<br>
+- docs(**models**): add documentation for user model<br>
+- feat(**models**): change creation of user to default iso datetime<br>
+- feat(**models**): add a user model<br>
+
 ## 0.4.0 (2024-11-24)
 
 
