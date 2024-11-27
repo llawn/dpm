@@ -1,0 +1,10 @@
+[development]
+# Development environment settings
+DEBUG = true
+PORT = 5432
+HOST = "localhost"
+USER = "postgres"
+
+[global]
+# Global variables accessible across environments
+APP_NAME = "DPM"

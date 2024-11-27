@@ -1,11 +1,20 @@
+from dynaconf import FlaskDynaconf
 from flask import Flask
 
 app = Flask(__name__)
 
+FlaskDynaconf(app, settings_files=["settings.toml", ".secrets.toml"])
+
 
 @app.route("/")
 def home():
-    return "<p>Hello, World!</p>"
+    return {
+        "app_name": app.config.get("APP_NAME"),
+        "debug": app.config.get("DEBUG"),
+        "port": app.config.get("PORT"),
+        "host": app.config.get("HOST"),
+        "user": app.config.get("USER"),
+    }
 
 
 def start():
