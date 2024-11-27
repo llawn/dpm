@@ -1,4 +1,6 @@
+dynaconf
 email-validator
+flask
 nose2
 pydantic
 pytz
