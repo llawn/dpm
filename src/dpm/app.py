@@ -1,9 +1,11 @@
 from dynaconf import FlaskDynaconf
 from flask import Flask
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
-
 FlaskDynaconf(app, settings_files=["settings.toml", ".secrets.toml"])
+
+bcrypt = Bcrypt(app)
 
 
 @app.route("/")

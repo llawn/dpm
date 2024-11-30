@@ -1,6 +1,7 @@
 dynaconf
 email-validator
 flask
+flask-bcrypt
 nose2
 pydantic
 pytz
