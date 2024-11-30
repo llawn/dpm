@@ -3,7 +3,7 @@ from datetime import UTC, datetime
 
 import pytz
 
-from src.dpm.models.user import User
+from src.dpm.models.user import UserModel
 
 
 class TestGetIsoMethod(unittest.TestCase):
@@ -11,7 +11,7 @@ class TestGetIsoMethod(unittest.TestCase):
         """Check that naive datetime is correctly converted to ISO string in UTC"""
         naive_dt = datetime(2024, 11, 25, 12, 0, 0)
         expected_result = "2024-11-25T12:00:00"
-        result = User.get_iso(naive_dt)
+        result = UserModel.get_iso(naive_dt)
         self.assertEqual(result, expected_result)
 
     def test_aware_datetime(self):
@@ -19,11 +19,11 @@ class TestGetIsoMethod(unittest.TestCase):
         # UTC
         aware_dt = datetime(2024, 11, 25, 12, 0, 0, tzinfo=UTC)
         expected_result = "2024-11-25T12:00:00"
-        result = User.get_iso(aware_dt)
+        result = UserModel.get_iso(aware_dt)
         self.assertEqual(result, expected_result)
         # IST
         tz = pytz.timezone("America/New_York")
         aware_dt = tz.localize(datetime(2024, 11, 25, 12, 0, 0))
-        result = User.get_iso(aware_dt)
+        result = UserModel.get_iso(aware_dt)
         expected_result = "2024-11-25T17:00:00"
         self.assertEqual(result, expected_result)

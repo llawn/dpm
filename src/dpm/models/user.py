@@ -6,8 +6,8 @@ from pydantic import BaseModel, EmailStr, PositiveInt, SecretStr
 from .customtypes import UsernameStr
 
 
-class User(BaseModel):
-    """User model to represent a user
+class UserModel(BaseModel):
+    """UserModel to represent a user
 
     use pydantic BaseModel for validation
 
@@ -76,7 +76,7 @@ class User(BaseModel):
         :param last_login: datetime of last login, defaults to None
         :type last_login: datetime, optional
         :return: user
-        :rtype: User
+        :rtype: UserModel
         """
         created_at_iso = cls.get_iso(created_at) if created_at else None
         last_login_iso = cls.get_iso(created_at) if last_login else None

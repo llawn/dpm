@@ -3,7 +3,7 @@ from datetime import datetime
 
 from pydantic import SecretStr, ValidationError
 
-from src.dpm.models.user import User
+from src.dpm.models.user import UserModel
 
 
 class TestUserModel(unittest.TestCase):
@@ -15,7 +15,7 @@ class TestUserModel(unittest.TestCase):
             "password": "securepassword",
             "email": "testuser@example.com",
         }
-        user = User(**user_data)
+        user = UserModel(**user_data)
         self.assertEqual(user.user_id, 1)
         self.assertEqual(user.username, "testuser")
         self.assertIsInstance(user.password, SecretStr)
@@ -25,7 +25,7 @@ class TestUserModel(unittest.TestCase):
     def test_user_id_invalid(self):
         """Test invalid user_id (non-positive)."""
         with self.assertRaises(ValidationError):
-            User(
+            UserModel(
                 user_id=-1,
                 username="testuser",
                 password="securepassword",
@@ -35,7 +35,7 @@ class TestUserModel(unittest.TestCase):
     def test_username_invalid(self):
         """Test custom constraints for username."""
         with self.assertRaises(ValidationError):
-            User(
+            UserModel(
                 user_id=1,
                 username="ab",  # Too short
                 password="securepassword",
@@ -45,11 +45,13 @@ class TestUserModel(unittest.TestCase):
     def test_email_invalid(self):
         """Test invalid email."""
         with self.assertRaises(ValidationError):
-            User(user_id=1, username="testuser", password="securepassword", email="invalid-email")
+            UserModel(
+                user_id=1, username="testuser", password="securepassword", email="invalid-email"
+            )
 
     def test_datetime_values(self):
         """Test default values for created_at and last_login."""
-        user = User(
+        user = UserModel(
             user_id=1, username="testuser", password="securepassword", email="testuser@example.com"
         )
         # Verify `created_at` is a valid ISO format
