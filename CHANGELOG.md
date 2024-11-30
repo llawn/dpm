@@ -1,3 +1,15 @@
+## 0.6.0 (2024-11-30)
+
+
+- feat(**app**): initialize db before starting the app<br>
+- feat(**dbconn**): add a pydantic model for posgresql connexion settings<br>
+- feat(**dbconnect**): add a databaseconnmixin to load database settings from dynaconv and use it to connect to posgresql table<br>
+- feat(**auth**): add password generation and validation using bcrypt with pydantic<br>
+- chore(**conf**): add a secrets.template.toml to know the structure of the .secrets.toml file<br>
+- feat(**conf**): use dynaconf inside flask app<br>
+- feat(**dynaconf**): add dynaconf to the project<br>
+- feat(**app**): flask<br>
+
 ## 0.5.0 (2024-11-26)
 
 
