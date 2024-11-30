@@ -4,6 +4,7 @@ DEBUG = true
 PORT = 5432
 HOST = "localhost"
 USER = "postgres"
+DATABASE = "postgres"
 
 [global]
 # Global variables accessible across environments

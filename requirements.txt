@@ -3,5 +3,6 @@ email-validator
 flask
 flask-bcrypt
 nose2
+psycopg2
 pydantic
 pytz
