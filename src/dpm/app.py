@@ -20,6 +20,14 @@ def home():
 
 
 def start():
+    """start the app
+
+    initialize database and run app
+    """
+    from databases import DatabaseConnMixin
+
+    DatabaseConnMixin.create_db()
+    DatabaseConnMixin.init_db_entry()
     app.run(port=5000, debug=True)
 
 
