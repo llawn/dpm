@@ -1,6 +1,7 @@
 from datetime import UTC, datetime
 from typing import Self
 
+from flask_login import UserMixin
 from pydantic import BaseModel, EmailStr, PositiveInt, SecretStr
 
 from .customtypes import UsernameStr
@@ -88,3 +89,8 @@ class UserModel(BaseModel):
             created_at=created_at_iso,
             last_login=last_login_iso,
         )
+
+
+class User(UserModel, UserMixin):
+    def get_id(self):
+        return str(self.user_id)
