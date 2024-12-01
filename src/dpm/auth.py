@@ -1,5 +1,6 @@
-from app import bcrypt
 from pydantic import SecretStr
+
+from .app import bcrypt
 
 
 class AuthMixin:

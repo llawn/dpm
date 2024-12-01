@@ -1,8 +1,9 @@
 import psycopg2
-from app import app
-from auth import AuthMixin
-from models.settings import DatabaseConnSettings
 from pydantic import SecretStr
+
+from .app import app
+from .auth import AuthMixin
+from .models.settings import DatabaseConnSettings
 
 
 class DatabaseConnMixin:
