@@ -26,7 +26,8 @@ class DatabaseConnMixin:
         conn_settings = DatabaseConnSettings(**data)  # Validation
         return conn_settings
 
-    def db_conn(self) -> psycopg2.extensions.connection:
+    @staticmethod
+    def db_conn() -> psycopg2.extensions.connection:
         """db_conn connect to the database
 
         connect to the database based on the dynaconf settings
@@ -34,16 +35,17 @@ class DatabaseConnMixin:
         :return: psycopg2 connection object
         :rtype: psycopg2.extensions.connection
         """
-        conn_settings = self.load_conn_setttings()
+        conn_settings = DatabaseConnMixin.load_conn_setttings()
         conn = psycopg2.connect(**conn_settings.model_dump_secret())
         return conn
 
-    def create_db(self) -> None:
+    @staticmethod
+    def create_db() -> None:
         """create_db create database structure
 
         create the different tables
         """
-        conn = self.db_conn()
+        conn = DatabaseConnMixin.db_conn()
         cur = conn.cursor()
 
         cur.execute("""--sql
@@ -60,13 +62,14 @@ class DatabaseConnMixin:
         cur.close()
         conn.close()
 
+    @staticmethod
     def init_db_entry(self) -> None:
         """init_db_entry initialize tables with an entry
 
         add an entry to not have empty table (use for testing)
         """
 
-        conn = self.db_conn()
+        conn = DatabaseConnMixin.db_conn()
         cur = conn.cursor()
         pw = AuthMixin.generate_password(SecretStr("password")).get_secret_value()
 
